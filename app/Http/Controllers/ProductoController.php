@@ -13,6 +13,9 @@ class ProductoController extends Controller
     public function index()
     {
         //READ
+        // return Producto::all(); para mostrar todos los productos en general
+        $productos = Producto::where('estado', 'A')->get();
+        return $productos;
     }
 
 
@@ -22,6 +25,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //CREATE 
+        Producto::create($request->all());
     }
 
 
@@ -31,6 +35,8 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         //UPDATE
+        Producto::findOrFail($request->id)
+        ->update($request->all());
     }
 
     /**
@@ -39,5 +45,8 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //DELETE
+        Producto::findOrFail($producto->id)
+        ->update(['estado' => 'I']);
+        // ->delete para eliminar de la bd
     }
 }

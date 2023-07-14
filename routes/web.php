@@ -27,4 +27,6 @@ Route::get('/star', function () {
 
 Route::resource('/producto', ProductoController::class)->only(['index', 'store', 'update', 'destroy']);
 
-
+Route::get('/productos', function (){
+return view ('productos');
+});
