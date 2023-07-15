@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductoRequest;
 
 class ProductoController extends Controller
 {
@@ -14,15 +15,17 @@ class ProductoController extends Controller
     {
         //READ
         // return Producto::all(); para mostrar todos los productos en general
-        $productos = Producto::where('estado', 'A')->get();
-        return $productos;
+         return Producto::where('estado', 'A')->paginate(2);
+
+        //  $productos = Producto::where('estado', 'A')->get();
+        // return $productos;
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
         //CREATE 
         Producto::create($request->all());
@@ -45,8 +48,16 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //DELETE
-        Producto::findOrFail($producto->id)
-        ->update(['estado' => 'I']);
+       $producto = Producto::findOrFail($producto->id);
+       $producto->estado = 'I';
+       $producto->save();
         // ->delete para eliminar de la bd
+
+        // Producto::findOrFail($producto->id)
+        // ->update(['estado' => 'I']);
+
+
+
+
     }
 }

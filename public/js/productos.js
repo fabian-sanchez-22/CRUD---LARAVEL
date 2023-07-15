@@ -13,8 +13,14 @@ read();
 clear();
 })
 .catch(function(error){
-console.log(error);
-})
+console.log(error.response.data.errors);
+
+let errors = "";
+Object.values(error.response.data.errors).forEach(element => {
+    errors += `${element} <br>`;
+});
+    errorr.innerHTML = `Error <br> ${errors}`;
+});
 
 }
 
@@ -25,18 +31,27 @@ axios.get('producto')
 .then(function (response){
     let datos = "";
 console.log(response.data);
-response.data.forEach((element, index) => {
-    datos += `<tr onclick='loadData(${JSON.stringify(element)})' >`
-    datos += `<td>${index + 1}</td>`
-    datos += `<td>${element.nombre}</td>`
-    datos += `<td>${element.cantidad}</td>`
-    datos += `<td>${element.precio}</td>`
-    datos += `<tr>`
+let lista = "";
+response.data.links.forEach((element) => {
+console.log(element);
+lista += `<td>
+                <a href="${element.url}">${element.label}
+        </td>`;
 });
-tableBody.innerHTML = datos;
-})
-.catch(function(error){
-console.log(error);
+list.innerHTML = lista;
+// Object.values(response.data).forEach((element, index) => {
+//     datos += `<tr onclick='loadData(${JSON.stringify(element)})' >`
+//     datos += `<td>${index + 1}</td>`
+//     datos += `<td>${element.nombre}</td>`
+//     datos += `<td>${element.cantidad}</td>`
+//     datos += `<td>${element.precio}</td>`
+//     datos += `<tr>`
+// });
+// tableBody.innerHTML = datos;
+//  errorr.innerHTML = "";
+// })
+// .catch(function(error){
+// console.log(error);
 })
 }
 
