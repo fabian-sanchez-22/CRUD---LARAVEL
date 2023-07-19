@@ -7,6 +7,13 @@
     <title>Productos</title>
     <script src="../js/axios.min.js" ></script>
     <link rel="stylesheet" href="../css/productos.css">
+    <style>
+        .pagina{
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+        }
+    </style>
 
 </head>
 
@@ -14,7 +21,7 @@
 
     <h1 style="text-align: center;">Productos</h1>
     <br>
-
+    
     <div>
         <label for="nombre">Nombre:</label>
         <input type="text" name="txtNombre" id="txtNombre">
@@ -57,7 +64,7 @@
 
             <tbody id="tableBody"></tbody>
             <tfoot>
-                <tr id="list"></tr>
+                <tr style="width: 30px;" id="list"></tr>
             </tfoot>
         </table>
     </div>

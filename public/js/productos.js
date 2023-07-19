@@ -26,32 +26,32 @@ Object.values(error.response.data.errors).forEach(element => {
 
 
 
-function read (){
-axios.get('producto')
+function read (url = "producto"){
+axios.get(url)
 .then(function (response){
     let datos = "";
-console.log(response.data);
-let lista = "";
+    let lista = "";
+
 response.data.links.forEach((element) => {
 console.log(element);
 lista += `<td>
-                <a href="${element.url}">${element.label}
+                <a class="pagina" onclick="read('${element.url}')">${element.label}
         </td>`;
 });
 list.innerHTML = lista;
-// Object.values(response.data).forEach((element, index) => {
-//     datos += `<tr onclick='loadData(${JSON.stringify(element)})' >`
-//     datos += `<td>${index + 1}</td>`
-//     datos += `<td>${element.nombre}</td>`
-//     datos += `<td>${element.cantidad}</td>`
-//     datos += `<td>${element.precio}</td>`
-//     datos += `<tr>`
-// });
-// tableBody.innerHTML = datos;
-//  errorr.innerHTML = "";
-// })
-// .catch(function(error){
-// console.log(error);
+    response.data.data.forEach((element, index) => {
+    datos += `<tr onclick='loadData(${JSON.stringify(element)})' >`
+    datos += `<td>${index + 1}</td>`
+    datos += `<td>${element.nombre}</td>`
+    datos += `<td>${element.cantidad}</td>`
+    datos += `<td>${element.precio}</td>`
+    datos += `<tr>`
+});
+tableBody.innerHTML = datos;
+ errorr.innerHTML = "";
+})
+.catch(function(error){
+console.log(error);
 })
 }
 
@@ -88,6 +88,18 @@ function deletes(){
     });
 }
 }
+
+
+function linkPaginate(url){
+axios.get(url)
+.then(function(response){
+console.log(response);
+})
+.catch(function(error){
+console.log(error);
+})
+}
+
 
 function loadData(producto){
     this.id = producto.id;

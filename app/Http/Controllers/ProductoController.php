@@ -15,7 +15,7 @@ class ProductoController extends Controller
     {
         //READ
         // return Producto::all(); para mostrar todos los productos en general
-         return Producto::where('estado', 'A')->paginate(2);
+         return Producto::where('estado', 'A')->paginate(10);
 
         //  $productos = Producto::where('estado', 'A')->get();
         // return $productos;
