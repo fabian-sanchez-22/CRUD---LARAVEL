@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductoRequest;
+use GuzzleHttp\Middleware;
 
 class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct()
+     {
+    $this->middleware('acceso',['only' =>['store','update','destroy']]);
+    }
     public function index()
     {
         //READ

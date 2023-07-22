@@ -17,7 +17,7 @@ use App\Http\Controllers\SaludarController;
 
 Route::get('/star', function () {
     return view('welcome');
-})->name('Inicio');
+})->middleware('acceso');
 
 
 // Route::get('/producto', [ProductoController::class, 'index']);
@@ -25,7 +25,11 @@ Route::get('/star', function () {
 // Route::put('/producto/{id}', [ProductoController::class, 'update']);
 // Route::delete('/producto/{id}', [ProductoController::class, 'destroy']);
 
-Route::resource('/producto', ProductoController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    Route::resource('/producto', ProductoController::class)->only(['index', 'store', 'update', 'destroy']);
+
+
+
 
 Route::get('/productos', function (){
 return view ('productos');
