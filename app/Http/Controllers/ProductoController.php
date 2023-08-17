@@ -21,20 +21,21 @@ class ProductoController extends Controller
     {
         //READ
         // return Producto::all(); para mostrar todos los productos en general
-         return Producto::where('estado', 'A')->paginate(10);
+         return Producto::where('estado', 'A')->paginate(5);
 
         //  $productos = Producto::where('estado', 'A')->get();
         // return $productos;
     }
 
 
-    /**
+    /** 
      * Store a newly created resource in storage.
      */
     public function store(ProductoRequest $request)
     {
         //CREATE 
-        Producto::create($request->all());
+         Producto::create($request->all());
+       
     }
 
 

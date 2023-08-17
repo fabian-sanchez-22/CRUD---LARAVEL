@@ -22,18 +22,18 @@ class ProductoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|max:45',
-            'cantidad' => 'required|numeric|min:2',
-            'precio' => 'required|min:3|'
+            'nombre' => 'required|unique:productos|string|min:3|max:10',
+            'cantidad' => 'required|min:1|max:1000',
+            'precio' => 'required|numeric|min:2'
         ];
     }
 
     public function messages(){
         return [
-        'nombre.required' => 'El :attribute es obligatorio',
-        'cantidad.required' => 'Añade una :attribute al producto',
-        'precio.min'  => 'El :attribute debe ser minimo 3 cifras',
-        'precio.required'  => 'Añade un :attribute al producto',
+            'required' => "El campo:attribute es obligatorio",
+            'min' => "la cantidad minima es de :min",
+            'max'=>"No puede excederse de :max",
+            'nombre.required' => "El campo nombre debe ser obligatorio"
         ];
     }
 }

@@ -20,6 +20,7 @@ Object.values(error.response.data.errors).forEach(element => {
     errors += `${element} <br>`;
 });
     errorr.innerHTML = `Error <br> ${errors}`;
+    console.log(error);
 });
 
 }
@@ -93,10 +94,8 @@ function deletes(){
 function linkPaginate(url){
 axios.get(url)
 .then(function(response){
-console.log(response);
 })
 .catch(function(error){
-console.log(error);
 })
 }
 

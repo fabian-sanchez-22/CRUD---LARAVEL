@@ -26,7 +26,9 @@ Route::get('/star', function () {
 // Route::delete('/producto/{id}', [ProductoController::class, 'destroy']);
 
 
-    Route::resource('/producto', ProductoController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('/producto', ProductoController::class)
+    ->only(['index', 'store', 'update', 'destroy'])
+    ->middleware('acceso');
 
 
 
